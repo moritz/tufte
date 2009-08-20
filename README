@@ -1,0 +1,5 @@
+Tufte is a port of the "scruffy"[1] plotting library for Perl 6.
+
+It is a work in progress (ie not yet done much).
+
+    [1] http://scruffy.rubyforge.org/
