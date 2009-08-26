@@ -1,0 +1,16 @@
+Thoughts about porting stuff from scruffy to tufte:
+
+ * we try to keep names comparable.
+   lib/scruffy/foo/bar.rb becomes lib/Tufte/Foo/Bar.pm
+   
+   An exception is plurals: lib/scruffy/renderers/* becomes
+   lib/Tufte/Renderer/* (note the missing trailing s), each such file contains
+   only one renderer, no need to for a plural.
+
+ * scruffy seems to use an XML builder which keeps state internally.
+   My (moritz's) plan for Tufte is to use masak's SVG.pm, which works
+   differently: you build a data structure yourself, and hand the finished
+   thing to SVG.pm. We have to come up with a clever way to get rid of that
+   impedance mismatch (maybe something with gather/take? don't know if that
+   works). If we don't come up with a clever way, we can still write a wrapper
+   around SVG.pm
