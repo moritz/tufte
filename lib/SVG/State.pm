@@ -12,9 +12,9 @@ multi method as-svg() {
     @dimensions.push: 'width'  => $width  if defined $width;
     @dimensions.push: 'height' => $height if defined $height;
     return 'svg' => [
-        'xmlns' => 'http://www.w3.org/2000/svg',
-        'xmlns:svg' => 'http://www.w3.org/2000/svg',
-        'xmlns:xlink' => 'http://www.w3.org/1999/xlink',
+        'xmlns'         => 'http://www.w3.org/2000/svg',
+        'xmlns:svg'     => 'http://www.w3.org/2000/svg',
+        'xmlns:xlink'   => 'http://www.w3.org/1999/xlink',
         @dimensions,
         :defs => [
             @.defs,
