@@ -5,7 +5,8 @@ Thoughts about porting stuff from scruffy to tufte:
    
    An exception is plurals: lib/scruffy/renderers/* becomes
    lib/Tufte/Renderer/* (note the missing trailing s), each such file contains
-   only one renderer, no need to for a plural.
+   only one renderer, no need to for a plural. Likewise the
+   scruffy::components::* classes become Tufte::Component::*
 
  * scruffy seems to use an XML builder which keeps state internally.
    My (moritz's) plan for Tufte is to use masak's SVG.pm, which works
@@ -13,4 +14,4 @@ Thoughts about porting stuff from scruffy to tufte:
    thing to SVG.pm. We have to come up with a clever way to get rid of that
    impedance mismatch (maybe something with gather/take? don't know if that
    works). If we don't come up with a clever way, we can still write a wrapper
-   around SVG.pm
+   around SVG.pm (prototype is in lib/SVG/State.pm)

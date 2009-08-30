@@ -16,3 +16,15 @@ It is a work in progress (ie not yet done much).
         .render(:width(300), :height(200),
                 :to<line_test.png>, :as<png>);
     }
+
+== LICENSE
+
+Since scruffy is released under a MIT-style license and we're pretty much
+copying their code, we have to adapt either the same license, or an
+intersection of the MIT license and Artistic License 2.0.
+
+Every contributor is welcome to voice his or her opinion about that here.
+
+   who         OK with MIT     OK with MIT + AL 2.0        preference
+---------------------------------------------------------------------
+moritz            [X]                  [X]                    MIT
