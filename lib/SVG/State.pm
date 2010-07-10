@@ -9,8 +9,8 @@ has $.height is rw;
 
 multi method as-svg() {
     my @dimensions;
-    @dimensions.push: 'width'  => $width  if defined $width;
-    @dimensions.push: 'height' => $height if defined $height;
+    @dimensions.push: :$.width  if defined $.width;
+    @dimensions.push: :$.height if defined $.height;
     return 'svg' => [
         'xmlns'         => 'http://www.w3.org/2000/svg',
         'xmlns:svg'     => 'http://www.w3.org/2000/svg',

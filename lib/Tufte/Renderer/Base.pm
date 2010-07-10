@@ -29,7 +29,7 @@ multi method render(*%options) {
 
 multi method global_complexity() {
     # XXX
-    undef;
+    Any;
 }
 
 # vim: ft=perl6 sw=4 ts=4 expandtab
