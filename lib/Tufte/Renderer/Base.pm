@@ -1,7 +1,7 @@
 class Tufte::Renderer::Base;
 
 has %.options;
-has @!components;
+has @.components is rw;
 has $.svg;
 
 submethod BUILD {

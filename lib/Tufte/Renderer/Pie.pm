@@ -1,17 +1,17 @@
 use Tufte::Renderer::Base;
 use Tufte::Component::Background;
-use Tufte::Component::Graphs;
+use Tufte::Component::Graph;
 use Tufte::Component::Title;
 use Tufte::Component::Legend;
 class Tufte::Renderer::Pie is Tufte::Renderer::Base;
 
 submethod BUILD {
-    @!components =
+    @.components =
         Tufte::Component::Background.new(
             position => [0, 0],
             size     => [100, 100],
         ),
-        Tufte::Component::Graphs.new(
+        Tufte::Component::Graph.new(
             position => [-15, 12],
             size     => [90, 88],
         ),
