@@ -27,6 +27,12 @@ class Tufte::Component::Background is Tufte::Component::Base {
 
         }
 
+	# Render background (maybe)
+	$svg.drawings.push: :rect[
+	    width => %bounds<width>, height => %bounds<height>,
+	    :x<0>, :y<0>, fill => $fill
+	] if $fill;
+
     }
 }
 
