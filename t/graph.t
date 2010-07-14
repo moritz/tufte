@@ -1,6 +1,6 @@
 use v6;
 use Test;
-use Tufte::Graph;
+use Tufte;
 
 class BlankRenderer {
     method render (%options) {
@@ -120,6 +120,8 @@ class BlankRenderer {
       "A graph with hash data should render identically to " ~
       "a graph with array data.";
 }
+
+done_testing;
 
 # Local Variables:
 #   mode: cperl
