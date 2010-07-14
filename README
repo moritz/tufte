@@ -8,7 +8,7 @@ It is a work in progress (ie not yet done much).
 
     given Tufte::Graph.new {
         .title = "Sample Line Graph";
-        .renderer = Tufte::Renderers::Standard.new;
+        .renderer = Tufte::Renderer::Standard.new;
 
         .add(:line, 'Example', [20, 100, 70, 30, 106]);
 
