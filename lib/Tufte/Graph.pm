@@ -4,7 +4,7 @@ use Tufte::GraphState;
 
 has $!internal-state handles <
             title theme default-type
-            point-markers value-formatter raterizer
+            point-markers value-formatter rasterizer
         > = Tufte::GraphState.new;
 
 has $.renderer is rw handles <component remove>;
