@@ -2,7 +2,7 @@ use Tufte::Component::Base;
 
 class Tufte::Component::Background is Tufte::Component::Base {
     # TODO: make %options a slurpy named?
-    multi method draw($svg, %bounds, %options) {
+    multi method draw(%bounds, %options) {
         my $fill = '#EEEEEE';
         given %options<theme>.background {
             when Str {
@@ -10,7 +10,7 @@ class Tufte::Component::Background is Tufte::Component::Base {
             }
             when Positional {
                 $fill = 'url(#BackgroundGradient)';
-                $svg.defs.push: :linearGradient[
+		$!svg.defs = :linearGradient[
                     :id<BackgroundGradient>,
                     :x1<0%>, :y1<0%>,
                     :x2<0%>, :y2<100%>,
@@ -28,11 +28,12 @@ class Tufte::Component::Background is Tufte::Component::Base {
         }
 
 	# Render background (maybe)
-	$svg.drawings.push: :rect[
-	    width => %bounds<width>, height => %bounds<height>,
-	    :x<0>, :y<0>, fill => $fill
+	$!svg.drawings = :rect[
+	    :width(%bounds<width>), :height(%bounds<height>),
+	    :x<0>, :y<0>, :$fill
 	] if $fill;
 
+	$!svg.defs, $!svg.drawings;
     }
 }
 

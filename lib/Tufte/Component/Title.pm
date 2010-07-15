@@ -1,9 +1,9 @@
 use Tufte::Component::Base;
 
 class Tufte::Component::Title is Tufte::Component::Base {
-    multi method draw($svg, %bounds, %options) {
+    multi method draw(%bounds, %options) {
         if %options.exists<title> {
-            $svg.drawings.push: :text[
+            $!svg.drawings.push: :text[
                 :class<title>,
                 :x(%bounds<width> / 2),
                 :y(%bounds<height>),
@@ -16,6 +16,7 @@ class Tufte::Component::Title is Tufte::Component::Base {
                 ~%options<title>,
             ],
         }
+	$!svg.drawings;
     }
 }
 

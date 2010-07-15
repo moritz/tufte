@@ -3,7 +3,7 @@ use Tufte::Component::Base;
 class Tufte::Component::Graph is Tufte::Component::Base {
     our $STACKED_OPACITY = 0.85;
 
-    multi method draw($svg, %bounds, %options) {
+    multi method draw(%bounds, %options) {
 	my @applicable_layers = gather {
 	    for %options<layers> -> $l {
 		take $l unless %!options<only>;
@@ -21,10 +21,11 @@ class Tufte::Component::Graph is Tufte::Component::Base {
 		color      => $layer.preferred_color || $layer.color || %options<theme>.next_color,
 		opacity    => $.opacity_for($idx), theme => %options<theme>;
 
-	    svg.drawings.push: :g[
+	    $!svg.drawings.push: :g[
 		id => "component_{$!id}_graph_$idx", :class<graph_layer>,
-		@applicable_layers[$idx].render($svg, %layer_options)];
+		$layer.render(%layer_options)];
 	}
+	$!svg.drawings;
     }
 
     multi method opacity_for($idx) {

@@ -1,4 +1,5 @@
 class Tufte::Component::Base;
+use SVG::State;
 
 has $.id;
 has @.position is rw = (0, 0);
@@ -6,27 +7,28 @@ has @.size is rw = (100, 100);
 has %.options is rw;
 has $.visible is rw = True;
 has $!render_height;
+has $!svg = SVG::State.new;
 
-multi method render($svg, %bounds, %options) {
-    return unless $.visible;
+multi method render(%bounds, %options) {
+    return unless $!visible;
     %options = %options, %.options;
 
-    return $.process($svg, %options) unless %bounds;
+    return $.process(%options) unless %bounds;
 
     $!render_height = %bounds<height>;
 
-    $svg.drawings.push: g => [
-        id => $.id,
-        transform => "translate(%bounds.delete('x'), %bounds.delete('y'))"
+    $!svg.drawings = :g[:$!id,
+        :transform("translate(%bounds.delete('x'), %bounds.delete('y'))"),
+        $.draw(%bounds, %options);
     ];
-    $.draw($svg, %bounds, %options);
 }
 
-multi method draw($svg, %bounds, %options) {
+multi method draw(%bounds, %options) {
     # Override this if visual component
+    $!svg.drawings;
 }
 
-multi method process($svg, %options) {
+multi method process(%options) {
     # Override this NOT a visual component
 }
 

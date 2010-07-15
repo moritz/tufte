@@ -4,7 +4,7 @@ class Tufte::Component::Legend is Tufte::Component::Base {
     has $!line_height;
     our $FONT_SIZE = 80;
 
-    method draw($svg, %bounds, %options) {
+    method draw(%bounds, %options) {
         my $vertical = %options<vertical_legend>;
         my @legend_info = $.relevant_legend_info(%options<layers>);
         my ($x, $y, $size) = 0 xx 3;
@@ -16,7 +16,7 @@ class Tufte::Component::Legend is Tufte::Component::Base {
         for @points.kv -> $idx, $point {
             ($x, $y, $size) = $vertical ?? (0, $point, $!line_height/2)
                                          !! ($offset + $point, 0, $.relative(50));
-            $svg.drawings.push: 
+            $!svg.drawings.push: 
                 :rect[
                     :$x,
                     :$y,
@@ -34,6 +34,7 @@ class Tufte::Component::Legend is Tufte::Component::Base {
                     ~@legend_info[$idx]<title>,
                 ];
         }
+	$!svg.drawings;
     }
 
     method relevant_legend_info(@layers, @categories = @.options<category> // @.options<categories>) {

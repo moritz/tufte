@@ -4,7 +4,7 @@ class Tufte::Component::ValueMarkers is Tufte::Component::Base;
 
 has $.markers is rw;
 
-multi method draw($svg, %bounds, %options) {
+multi method draw(%bounds, %options) {
     my $markers = %options<markers> // $!markers // 5;
     my @all_values;
 
@@ -21,7 +21,7 @@ multi method draw($svg, %bounds, %options) {
 	    $marker_value    = %options<value_formatter>.route_format($marker_value, $idx, %options);
 	}
 
-	$svg.drawings.push: :text[
+	$!svg.drawings = :text[
 	    :x(%bounds<width>), :y(%bounds<height> - $marker),
 	    :font-size($.relative(8)),
 	    :font-family(%options<theme>.font_family),
