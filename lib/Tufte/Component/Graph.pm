@@ -13,8 +13,7 @@ class Tufte::Component::Graph is Tufte::Component::Base {
 		take $l if $l.options<categories> && $l.options<categories> !~~ %!options<only>;
 	    }
 	}
-	for 0..@applicable_layers.end -> $idx {
-	    my $layer = @applicable_layers[$idx];
+	for @applicable_layers.kv -> $idx, $layer {
 	    my %layer_options = index => $idx,
 		min_value  => %options<min_value>, max_value => %options<max_value>,
 		complexity => %options<complexity>;
