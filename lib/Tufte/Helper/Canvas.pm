@@ -1,6 +1,26 @@
-module Tufte::Helper::Canvas;
+role Tufte::Helper::Canvas;
 
-multi sub bounds_for(@canvas_size, @position, @size) {
+has @.components is rw;
+
+multi method reset_settings() {
+    %!options = {}
+}
+
+multi method component($id, @components=@!components) {
+    @components.grep: { .id ~~ $id };
+}
+
+multi method index($id, @components=@!components) {
+    for @components.kv -> $idx, $component {
+        return $idx if $component.id ~~ $id;
+    }
+}
+
+multi method remove($id, @components is rw =@!components) {
+    @components.splice($.index($id, @components), 1);
+}
+
+multi method bounds_for(@canvas_size, @position, @size) {
     return unless @position && @size;
     return {
         x       => @canvas_size[0] * @position[0] / 100;

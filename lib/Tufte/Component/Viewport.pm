@@ -1,9 +1,7 @@
 use Tufte::Component::Base;
 use Tufte::Helper::Canvas;
 
-class Tufte::Component::Viewport is Tufte::Component::Base;
-
-has @!components;
+class Tufte::Component::Viewport is Tufte::Component::Base does Tufte::Helper::Canvas;
 
 multi method draw(%bounds, %options) {
     for @!components -> $component {
