@@ -10,18 +10,20 @@ class Tufte::Component::Background is Tufte::Component::Base {
             }
             when Positional {
                 $fill = 'url(#BackgroundGradient)';
-		$!svg.defs = :linearGradient[
-                    :id<BackgroundGradient>,
-                    :x1<0%>, :y1<0%>,
-                    :x2<0%>, :y2<100%>,
-                    :stop[
-                        :offset<5%>,
-                        stop-color => %options<theme>.background[0],
-                    ],
-                    :stop[
-                        :offset<95%>,
-                        stop-color => %options<theme>.background[1],
-                    ],
+		$!svg.defs = :defs[
+		    :linearGradient[
+			:id<BackgroundGradient>,
+			:x1<0%>, :y1<0%>,
+			:x2<0%>, :y2<100%>,
+			:stop[
+			    :offset<5%>,
+			    stop-color => %options<theme>.background[0],
+			],
+			:stop[
+			    :offset<95%>,
+			    stop-color => %options<theme>.background[1],
+			],
+		    ]
                 ];
             }
 
