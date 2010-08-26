@@ -17,9 +17,12 @@ multi method index($id, @components=@!components) {
 }
 
 multi method remove($id, @components is rw =@!components) {
-    @components.splice($.index($id, @components), 1);
+    @components.delete($.index($id, @components));
 }
 
+# Converts percentage values into actual pixel values based on the known render size.
+#
+# Returns a hash consisting of x, y, width, and height elements.
 multi method bounds_for(@canvas_size, @position, @size) {
     return unless @position && @size;
     return {
@@ -29,5 +32,17 @@ multi method bounds_for(@canvas_size, @position, @size) {
         height  => @canvas_size[1] * @size[1]     / 100;
     }
 }
+
+=begin pod
+
+=head1 NAME
+
+Tufte::Helper::Canvas - Provides common methods for canvas objects.
+
+=head1 DESCRIPTION
+
+Provides common methods for canvas objects. Primarily used for providing spacial-type calculations where necessary.
+
+=end pod
 
 # vim: ft=perl6 sw=4 ts=4 expandtab
